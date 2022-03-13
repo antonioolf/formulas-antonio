@@ -2,14 +2,8 @@
   "dockerImageBuilder": "ritclizup/rit-shell-bat-builder",
   "inputs": [
     {
-      "label": ".realdrum file location: ",
-      "name": "file_path",
-      "type": "text",
-      "required": true
-    },
-    {
-      "label": "Drumkit display name: ",
-      "name": "display_name",
+      "label": "Important: Place the .realdrum file in the current directory!\n\n .realdrum file name: ",
+      "name": "file_name",
       "type": "text",
       "required": true
     }
