@@ -108,6 +108,10 @@ runFormula() {
   mv "kickr.png" "kick_r.png"
 
   mv "thumbnail.png" "cover.png"
+
+  # Corta topo da imagem cover.png
+  convert cover.png -gravity North -chop 0x30 cover.png
+
   mv "tom1.png" "tom_1.png"
   mv "tom2.png" "tom_2.png"
   mv "tom3.png" "tom_3.png"
@@ -128,17 +132,14 @@ runFormula() {
   # Exclui kit.xml
   rm kit.xml
 
-  # Navega para pasta anterior
-  cd ..
+  cp "$CURRENT_PWD/$kitNumber/megadrumkit/cover.png" "$CURRENT_PWD/$kitNumber/cover.png"
 
-  # Copia cover.png
-  cp "./megadrumkit/cover.png" .
-
-  # Zipa o diretório gerar o kit.megadrum
-  7z a kit.megadrum megadrumkit/
+  # Zipa o diretório para gerar o kit.megadrum
+  cd "$CURRENT_PWD/$kitNumber" || exit
+  zip -r "$CURRENT_PWD/$kitNumber/kit.megadrum" "./megadrumkit"
 
   # Deleta pasta megadrumkit
-  rm -rf megadrumkit/
+  rm -rf "$CURRENT_PWD/$kitNumber/megadrumkit"
 
   addToIndexJson "$kitNumber"
 
